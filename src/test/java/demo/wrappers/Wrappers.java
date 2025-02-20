@@ -23,7 +23,6 @@ public class Wrappers {
     public final WebDriver driver;
     public Actions action;
     public WebDriverWait wait;
-    public static WebElement selectedMovieSection;
 
     // Constructor
     public Wrappers(WebDriver driver) {
