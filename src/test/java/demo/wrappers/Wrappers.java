@@ -23,7 +23,7 @@ public class Wrappers {
     public final WebDriver driver;
     public Actions action;
     public WebDriverWait wait;
-    public static WebElement selectedMovieSection;
+
 
     // Constructor
     public Wrappers(WebDriver driver) {
@@ -276,8 +276,7 @@ public class Wrappers {
 
     }
 
-    // Checks last movie of the given movie section has the given age rating
-    // (A,U/A,etc)
+    // Checks if last movie of the given movie section has age rating 'A'
     public boolean isLastMovieRatedAs(String ageRating, String movieSection) {
         // movieSectionEle is parent element which contains all the elements of that
         // movie section
@@ -293,8 +292,8 @@ public class Wrappers {
                 // Get the age rating for last movie
                 WebElement ageRatingOfLastMovie = ageRatingElements.get(ageRatingElements.size() - 1);
 
-                System.out.println("ageRating : " + ageRatingOfLastMovie.getText());
-                System.out.println("Age rating is A? " + ageRatingOfLastMovie.getText().equals(ageRating));
+                // System.out.println("ageRating : " + ageRatingOfLastMovie.getText());
+                // System.out.println("Age rating is A? " + ageRatingOfLastMovie.getText().equals(ageRating));
 
                 // return true if age rating of last movie is 'A'
                 return ageRatingOfLastMovie.getText().trim().equals(ageRating);
@@ -313,7 +312,7 @@ public class Wrappers {
 
     }
 
-    // Checks if the movie category exists Eg: "Comedy", "Animation" or "Drama"
+    // Checks if the movie category exists 
     public boolean isLastMovieCategoryExists(String movieSectionToGet) {
 
         List<WebElement> allMovieSections = getAllMovieSections();
@@ -327,7 +326,7 @@ public class Wrappers {
                 // Get the movie category element of the last movie
                 WebElement movieCategoryOfLastMovie = movieCategoryElements.get(movieCategoryElements.size() - 1);
 
-                System.out.println("movieCategoryOfLastMovie displayed? " + movieCategoryOfLastMovie.isDisplayed());
+                // System.out.println("movieCategoryOfLastMovie displayed? " + movieCategoryOfLastMovie.isDisplayed());
 
                 // return true if movie category of last movie is displayed
                 return movieCategoryOfLastMovie.isDisplayed();
@@ -378,8 +377,7 @@ public class Wrappers {
 
     }
 
-    // Checks if number of songs listed is <=50 in last playlist of 1st section on
-    // Music page
+    // Checks if no of songs listed <=50 in last playlist of 1st section on Music page
     public boolean checkNoOfSongs() {
         List<WebElement> allMusicSection = getAllMusicSections();
         WebElement firstSection = allMusicSection.get(0);
@@ -446,7 +444,6 @@ public class Wrappers {
 
                 int likeCount = Integer.parseInt(newsLikeCount.getText().replaceAll("[^0-9]", ""));
                 totalLikesCount += likeCount;
-                // System.out.println((i+1)+" likeCount "+likeCount);
 
                 System.out.println(String.format((i+1)+". The Title of News post is: %s \nThe Body of the News post is: %s",newsTitleElement.getText(),newsBodyElement.getText()));
 
@@ -464,7 +461,6 @@ public class Wrappers {
     public void youTubeSearch(String toBeSearched){
         try {
             WebElement searchBoxElement = wait.until(ExpectedConditions.elementToBeClickable(Locators.SEARCH_BOX_ELEMENT));
-            // searchBoxElement.click();
             searchBoxElement.clear();
             searchBoxElement.sendKeys(toBeSearched,Keys.ENTER);
             
@@ -510,16 +506,16 @@ public class Wrappers {
 
             for(WebElement element: viewCountElements){
                 scrollToView(element, null);
-                
+
                 String viewCountText = element.getText().replace("views", "").trim();
                 viewCount = convertViewsToNumber(viewCountText);
                 totalViewCount += viewCount;
-                System.out.println("viewCountText "+ viewCountText);
-                System.out.println("Current viewCount: "+viewCount+" totalViewCount: "+totalViewCount);
+                // System.out.println("viewCountText "+ viewCountText);
+                // System.out.println("Current viewCount: "+viewCount+" totalViewCount: "+totalViewCount);
 
                 if(totalViewCount>=tenCr){
                     System.out.println("Condition statisfied the view count reached: "+totalViewCount);
-                    System.out.println("totalViewCount>=scrollTillViewCount: "+(totalViewCount>=tenCr));
+                    // System.out.println("totalViewCount>=scrollTillViewCount: "+(totalViewCount>=tenCr));
                     break;
                 }
 
