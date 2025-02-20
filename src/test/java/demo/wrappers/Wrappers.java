@@ -24,7 +24,6 @@ public class Wrappers {
     public Actions action;
     public WebDriverWait wait;
 
-
     // Constructor
     public Wrappers(WebDriver driver) {
         this.driver = driver;
